@@ -1,4 +1,13 @@
+//============================================================================
+// Name        : learning-cpp.cpp
+// Author      : Alan
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Hello World in C++, Ansi-style
+//============================================================================
+
 #include <iostream>
+#include <typeinfo>
 
 using namespace std;
 
@@ -29,6 +38,18 @@ int main()
     char a = 'a';
 
     cout << "Character " << a << endl;
+
+    // Type Inference with auto
+
+    auto d = 1; // Decimal
+    auto f = 1.345f;
+
+    cout << "Type of d (integer): " << typeid(d).name() << endl;        // return i which stands for integer
+    cout << "Type of f (floating point): " << typeid(f).name() << endl; // return f which stands for floating point
+
+    d = 't';
+
+    cout << "New d value (t) : " << d << endl; // This will print integer value of the string tru
 
     return 0;
 }
