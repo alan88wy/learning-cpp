@@ -11,6 +11,12 @@
 
 using namespace std;
 
+
+#define LOG(msg) \
+    std::cout << msg << std::endl;
+
+
+
 int main()
 {
     cout << "Variables :" << endl;
@@ -50,6 +56,25 @@ int main()
     d = 't';
 
     cout << "New d value (t) : " << d << endl; // This will print integer value of the string tru
+
+    //    Pointers
+    const char * message {"Hello World!"};
+    cout << "Message : " << message << endl;
+    // messag will be an array of character. it will point to the first element.
+    // *message will return the first character since it is pointing to the
+    // first character in the array.
+
+    cout << "*Message : " << *message << endl;
+    cout << "Print second character : " << *(message + 1) << endl;
+    cout << "Print third character : " << *(message + 2) << endl;
+
+    // Cannot change the element like message[0] = 'K'
+    // but can point to another array
+    message = "Welcome";
+    cout << "Message : " << message << endl;
+    cout << "*Message : " << *message << endl;
+    cout << "Print second character : " << *(message + 1) << endl;
+    cout << "Print third character : " << *(message + 2) << endl;
 
     return 0;
 }
