@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <typeinfo>
+#include <string>
 
 using namespace std;
 
@@ -37,7 +38,7 @@ int main()
 
     cout << "Octal  023 = " << o_int << endl;
 
-    int fl_num = 23.0f;
+    float fl_num = 23.0f;
 
     cout << "Float 23.0f = " << fl_num << endl;
 
@@ -90,7 +91,9 @@ int main()
 
     cout << "Value of Y : " << y1 << endl;
 
+    string s = "Helloo World!";
 
+    cout << s.c_str() << endl;
 
     return 0;
 }
