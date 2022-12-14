@@ -57,7 +57,9 @@ int main()
 
     cout << "New d value (t) : " << d << endl; // This will print integer value of the string tru
 
-    //    Pointers
+    // Pointers
+    // ========
+
     const char * message {"Hello World!"};
     cout << "Message : " << message << endl;
     // messag will be an array of character. it will point to the first element.
@@ -75,6 +77,20 @@ int main()
     cout << "*Message : " << *message << endl;
     cout << "Print second character : " << *(message + 1) << endl;
     cout << "Print third character : " << *(message + 2) << endl;
+    cout << "Print third character : " << *(message + 2) << endl;
+
+
+    // Reference
+    // =========
+    // alias to an existing object in memory
+    // Reference must be initialized.
+
+    int x1 = 123;
+    int& y1 = x1;
+
+    cout << "Value of Y : " << y1 << endl;
+
+
 
     return 0;
 }
