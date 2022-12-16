@@ -36,8 +36,75 @@ class MyClass {
         MyClass(int xx): x{xx} {}
 
         // User defined Copy Constructor
+//        when we initialize an object with another object using
+//        the = operator on the same line, then the copy operation
+//        uses the copy constructor:
+//        MyClass copyfrom;
+//        MyClass copyto = copyfrom;
+
         MyClass(const MyClass& rhs): x{rhs.x} {
             cout << "User defined copy constructor invoked!" << endl;
+        }
+
+        // Copy Assignment Operator
+
+        // When an object is created on one line and then assigned
+        // to in the next line, it then uses the copy assignment
+        // operator to copy the data from another object
+
+        // MyClass copyfrom;
+        // MyClass copyto;
+        // copyto = copyfrom; // uses a copy assignment operator
+
+        MyClass& operator=(const MyClass& rhs) {
+
+            cout << "Copy Assignment Operator called" << endl;
+
+            if (this != &rhs) { // protect against invalid self-assignment
+                this->x = rhs.x;
+            }
+
+            // *this would be a "clone" of the current object
+            return *this;
+        }
+
+        // Uder Defined Move constructor
+        MyClass(MyClass&& rhs): x{std::move(rhs.x)} {
+            cout << "User Defined Move constructor called" << endl;
+        }
+
+        // User Defined Move Assignment
+
+        // Move assignment operator is invoked when we declare an
+        // object and then try to assign an rvalue reference to it.
+
+        MyClass& operator=(MyClass&& other) {
+            cout << "User Defined Move Assignment called" << endl;
+            this->x = std::move(other.x);
+            return *this;
+        }
+
+        // Operator Overloading
+        // myobject = otherobject;
+        // myobject + otherobject;
+        // myobject / otherobject;
+        // myobject++;
+        // ++myobject;
+
+        // Operator Overloading - prefix operator ++
+        MyClass& operator++() {
+            ++this->x;
+            cout << "Prefix Operator ++ Overloading called" << endl;
+            return *this;
+        }
+
+        // Operator Overloading - Post operator ++
+        MyClass operator++(int) {
+            MyClass tmp(*this);  // Create a copy
+            operator++(); // Invoke prefix operator
+
+            cout << "Post fix Operator ++ Overloading called" << endl;
+            return tmp;
         }
 
         void setX(int x) {
@@ -207,6 +274,28 @@ int main()
     MyClass myC2 = myC;
 
 //    myC2.printX();
+
+
+
+    cout << "Before calling ++myC2" << endl;
+    myC2.printX();
+
+    ++myC2;
+
+    cout << "After calling ++myC2" << endl;
+
+    myC2.printX();
+
+    // Move Constructor
+
+    cout << "Move constructor called myC3 = std::move(myC2)" << endl;
+    MyClass myC3 = std::move(myC2);
+    myC3.printX();
+
+    myC3++;  // Same as myC3.operator++(0);
+
+    cout << "After calling myC3++" << endl;
+    myC3.printX();
 
     return 0;
 }
