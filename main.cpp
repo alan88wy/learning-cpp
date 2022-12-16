@@ -17,7 +17,40 @@ using namespace std;
 #define LOG(msg) \
     std::cout << msg << std::endl;
 
+int sum(int i, int j);
+int incr(int i);
+void constReference(const int& i);
 
+class MyClass {
+
+    private:
+        int x;
+    public:
+
+//        MyClass(int x) {
+//            this->x = x;
+//        }
+
+        // Member Initialization Class(var): internalVar (var)
+        // internalVar = var
+        MyClass(int xx): x{xx} {}
+
+        // User defined Copy Constructor
+        MyClass(const MyClass& rhs): x{rhs.x} {
+            cout << "User defined copy constructor invoked!" << endl;
+        }
+
+        void setX(int x) {
+            this->x = x;
+        }
+
+        void printX() {
+            cout << "Value of x = " << x << endl;
+        }
+        int getX() {
+            return this->x;
+        };
+};
 
 int main()
 {
@@ -81,6 +114,21 @@ int main()
     cout << "Print third character : " << *(message + 2) << endl;
     cout << "Print third character : " << *(message + 2) << endl;
 
+    // Dynamically allocated storage
+
+    int* p = new int;
+    *p = 987;
+    cout << "Value of p is : " << *p << endl;
+    delete p;
+
+
+    int* q = new int[3];
+
+    q[0] = 1;
+    q[1] = 2;
+    q[2] = 3;
+
+    cout << "Value of q is : " << q[0] << ' ' << q[1] << ' ' << q[2] << endl;
 
     // Reference
     // =========
@@ -136,5 +184,45 @@ int main()
 
     cout << endl;
 
+    // Function
+
+    cout << "Sum of 5 and 10  = " << sum( 5, 10) << endl;
+
+    // Pass by reference
+    cout << "Increase 5 by 1 : " << incr(5) << endl;
+
+    // Pass by const reference
+
+    int mm = 1;
+    constReference(mm);
+    cout << "Value of mm (1) after calling constReference(mm) " << mm << endl;
+
+    MyClass myC(100);
+
+//    myC.setX(200);
+
+    myC.printX();
+
+    // Copy constructor will be called
+    MyClass myC2 = myC;
+
+//    myC2.printX();
+
     return 0;
 }
+
+int sum(int i, int j) {
+    return i + j;
+}
+
+int incr(int i) {
+    return ++i;
+}
+
+void constReference(const int& i) {
+    // This will fail
+    // i++;
+
+    return;
+}
+
